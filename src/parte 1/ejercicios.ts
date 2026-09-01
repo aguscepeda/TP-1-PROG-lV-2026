@@ -16,6 +16,7 @@
  */
 
 import { alumnos, type Alumno } from "../models/db.js";
+import { Alumno, Alumno } from "../parte 2/clase-alumno.js";
 
 // -----------------------------------------------------------------------------
 // EJERCICIO 1 - Obtener nombres
@@ -116,7 +117,7 @@ export function buscarPorNombre(
 // Devolver true si existe al menos un alumno con nota menor a 6.
 // Resolver utilizando some.
 export function existeDesaprobado(alumnos: Alumno[]): boolean {
-    // TODO
+    return alumnos.some(alumno => alumno.nota < 6);
     throw new Error("Implementar");
 }
 
@@ -126,7 +127,7 @@ export function existeDesaprobado(alumnos: Alumno[]): boolean {
 // Devolver true solamente si todos los alumnos tienen nota mayor o igual a 6.
 // Resolver utilizando every.
 export function todosAprobaron(alumnos: Alumno[]): boolean {
-    // TODO
+    return alumnos.every(alumno => alumno.nota >= 6);
     throw new Error("Implementar");
 }
 
@@ -136,7 +137,7 @@ export function todosAprobaron(alumnos: Alumno[]): boolean {
 // Devolver la cantidad de alumnos aprobados.
 // Resolver utilizando filter y length.
 export function cantidadAprobados(alumnos: Alumno[]): number {
-    // TODO
+    return alumnos.filter(alumno => alumno.nota >= 6).length;
     throw new Error("Implementar");
 }
 
@@ -146,7 +147,7 @@ export function cantidadAprobados(alumnos: Alumno[]): number {
 // Calcular la suma de las edades de todos los alumnos.
 // Resolver utilizando reduce.
 export function sumarEdades(alumnos: Alumno[]): number {
-    // TODO
+    return alumnos.reduce((suma, alumno) => suma + alumno.edad,0);
     throw new Error("Implementar");
 }
 
