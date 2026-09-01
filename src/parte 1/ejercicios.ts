@@ -70,8 +70,20 @@ export function obtenerAprobados(alumnos: Alumno[]): Alumno[] {
 //
 // Si el arreglo está vacío, devolver 0.
 export function calcularPromedio(alumnos: Alumno[]): number {
-    // TODO
-    throw new Error("Implementar");
+    // si el arreglo esta vacio, devolvemos 0
+    if (alumnos.length === 0) {
+        return 0;
+    }
+
+    // Usamos reduce para sumar todas las notas
+    const sumaNotas = alumnos.reduce((acumulador, alumno) => {
+        return acumulador + alumno.nota;
+    }, 0); //valor inicial del acumulador
+
+    // El promedio es la suma total dividida por la cantidad de alumnos
+    return sumaNotas / alumnos.length;
+
+    //throw new Error("Implementar");
 }
 
 // -----------------------------------------------------------------------------
@@ -80,8 +92,20 @@ export function calcularPromedio(alumnos: Alumno[]): number {
 // Devolver el alumno que tenga la nota más alta.
 // Si el arreglo está vacío, devolver undefined.
 export function obtenerMejorAlumno(alumnos: Alumno[]): Alumno | undefined {
-    // TODO
-    throw new Error("Implementar");
+    // Si el arreglo está vacioo, devolvemos undefined
+    if (alumnos.length === 0) {
+        return undefined;
+    }
+
+    // Usamos reduce para comparar las notas y arrastramos al alumno con la nota mas alta
+    return alumnos.reduce((mejor, actual) => {
+        if (actual.nota > mejor.nota) {
+            return actual;
+        }
+        return mejor; // Si no, seguimos manteniendo al que ya teniamos guardado
+    });
+
+    //throw new Error("Implementar");
 }
 
 // -----------------------------------------------------------------------------
@@ -93,8 +117,10 @@ export function buscarPorLegajo(
     alumnos: Alumno[],
     legajo: number
 ): Alumno | undefined {
-    // TODO
-    throw new Error("Implementar");
+    // Si termina de recorrer y no encuentra nada, devuelve undefined automaticamente.
+    return alumnos.find(alumno => alumno.legajo === legajo);
+
+    //throw new Error("Implementar");
 }
 
 // -----------------------------------------------------------------------------
@@ -106,8 +132,10 @@ export function buscarPorNombre(
     alumnos: Alumno[],
     nombre: string
 ): Alumno | undefined {
-    // TODO
-    throw new Error("Implementar");
+    // Usamos find comparando la propiedad nombre del alumno con el parametro nombre
+    return alumnos.find(alumno => alumno.nombre === nombre);
+
+    //throw new Error("Implementar");
 }
 
 // -----------------------------------------------------------------------------
@@ -151,15 +179,14 @@ export function sumarEdades(alumnos: Alumno[]): number {
 }
 
 // -----------------------------------------------------------------------------
-// EJERCICIO 13 - Alumnos de una ciudad
+// EJERCICIO 13 - Alumnos de una ciudad.
 // -----------------------------------------------------------------------------
 // Devolver los alumnos que pertenezcan a la ciudad recibida.
 export function obtenerAlumnosDeCiudad(
     alumnos: Alumno[],
     ciudad: string
 ): Alumno[] {
-    // TODO
-    throw new Error("Implementar");
+        return alumnos.filter(alumno => alumno.ciudad === ciudad);
 }
 
 // -----------------------------------------------------------------------------
@@ -173,8 +200,14 @@ export function calcularPromedioPorCiudad(
     alumnos: Alumno[],
     ciudad: string
 ): number {
-    // TODO
-    throw new Error("Implementar");
+    const alumnosDeCiudad = obtenerAlumnosDeCiudad(alumnos, ciudad);
+
+    if(alumnosDeCiudad.length === 0){
+        return 0;
+    }
+
+    const sumaNotas = alumnosDeCiudad.reduce((acumulador, alumno) => acumulador + alumno.nota, 0);
+    return sumaNotas / alumnosDeCiudad.length;
 }
 
 // -----------------------------------------------------------------------------
@@ -190,8 +223,7 @@ export function transformar<T, R>(
     elementos: T[],
     callback: (elemento: T) => R
 ): R[] {
-    // TODO
-    throw new Error("Implementar");
+    return elementos.map(callback);
 }
 
 // -----------------------------------------------------------------------------
@@ -207,8 +239,7 @@ export function filtrar<T>(
     elementos: T[],
     callback: (elemento: T) => boolean
 ): T[] {
-    // TODO
-    throw new Error("Implementar");
+    return elementos.filter(callback);
 }
 
 // -----------------------------------------------------------------------------
