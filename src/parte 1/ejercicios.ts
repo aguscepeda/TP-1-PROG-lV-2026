@@ -152,7 +152,7 @@ export function sumarEdades(alumnos: Alumno[]): number {
 }
 
 // -----------------------------------------------------------------------------
-// EJERCICIO 13 - Alumnos de una ciudad
+// EJERCICIO 13 - Alumnos de una ciudad.
 // -----------------------------------------------------------------------------
 // Devolver los alumnos que pertenezcan a la ciudad recibida.
 export function obtenerAlumnosDeCiudad(
