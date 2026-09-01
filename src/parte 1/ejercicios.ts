@@ -254,8 +254,7 @@ export function buscar<T>(
     elementos: T[],
     callback: (elemento: T) => boolean
 ): T | undefined {
-    // TODO
-    throw new Error("Implementar");
+    return elementos.find(callback);
 }
 
 // -----------------------------------------------------------------------------
@@ -271,8 +270,10 @@ export function calcularTotal(
     alumnos: Alumno[],
     callback: (alumno: Alumno) => number
 ): number {
-    // TODO
-    throw new Error("Implementar");
+    return alumnos.reduce(
+        (total, alumno) => total + callback(alumno),
+        0
+    );
 }
 
 // -----------------------------------------------------------------------------
@@ -293,8 +294,13 @@ export function calcularTotal(
 export function agruparPorCiudad(
     alumnos: Alumno[]
 ): Record<string, Alumno[]> {
-    // TODO
-    throw new Error("Implementar");
+    return alumnos.reduce<Record<string, Alumno[]>>(
+        (alumnosPorCiudad, alumno) => {
+            (alumnosPorCiudad[alumno.ciudad] ??= []).push(alumno);
+            return alumnosPorCiudad;
+        },
+        {}
+    );
 }
 
 // -----------------------------------------------------------------------------
@@ -320,8 +326,41 @@ export interface Estadisticas {
 export function obtenerEstadisticas(
     alumnos: Alumno[]
 ): Estadisticas {
-    // TODO
-    throw new Error("Implementar");
+    const cantidadTotal = alumnos.length;
+
+    const cantidadDeAprobados = alumnos.filter(
+        alumno => alumno.nota >= 6
+    ).length;
+
+    const cantidadDesaprobados =
+        cantidadTotal - cantidadDeAprobados;
+
+    const sumaNotas = alumnos.reduce(
+        (total, alumno) => total + alumno.nota,
+        0
+    );
+
+    const promedio =
+        cantidadTotal === 0 ? 0 : sumaNotas / cantidadTotal;
+
+    const mejorAlumno = alumnos.reduce<Alumno | undefined>(
+        (mejor, alumno) => {
+            if (mejor === undefined || alumno.nota > mejor.nota) {
+                return alumno;
+            }
+
+            return mejor;
+        },
+        undefined
+    );
+
+    return {
+        cantidadTotal,
+        cantidadAprobados: cantidadDeAprobados,
+        cantidadDesaprobados,
+        promedio,
+        mejorAlumno
+    };
 }
 
 // -----------------------------------------------------------------------------
@@ -344,3 +383,27 @@ export function obtenerEstadisticas(
 // console.log(calcularPromedioPorCiudad(alumnos, "Bahía Blanca"));
 // console.log(agruparPorCiudad(alumnos));
 // console.log(obtenerEstadisticas(alumnos));
+console.log(
+    "Ejercicio 16 - Filtrar:",
+    filtrar([1, 2, 3, 4], numero => numero % 2 === 0)
+);
+
+console.log(
+    "Ejercicio 17 - Buscar:",
+    buscar([1, 2, 3, 4], numero => numero > 2)
+);
+
+console.log(
+    "Ejercicio 18 - Total de notas:",
+    calcularTotal(alumnos.slice(0, 5), alumno => alumno.nota)
+);
+
+console.log(
+    "Ejercicio 19 - Alumnos agrupados:",
+    agruparPorCiudad(alumnos.slice(0, 10))
+);
+
+console.log(
+    "Ejercicio 20 - Estadísticas:",
+    obtenerEstadisticas(alumnos)
+);
