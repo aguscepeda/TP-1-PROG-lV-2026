@@ -16,7 +16,6 @@
  */
 
 import { alumnos, type Alumno } from "../models/db.js";
-import { Alumno, Alumno } from "../parte 2/clase-alumno.js";
 
 // -----------------------------------------------------------------------------
 // EJERCICIO 1 - Obtener nombres
