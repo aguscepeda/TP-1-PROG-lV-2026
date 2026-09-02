@@ -15,7 +15,7 @@
 // -----------------------------------------------------------------------------
 //TODO rever la interface no me gusta para esto.
 
-export interface AlumnoInterface {
+export interface AlumnoInterface {  // Definición de la estructura de un Alumno usando Interface
     legajo: number;
     nombre: string;
     apellido: string;
@@ -23,21 +23,20 @@ export interface AlumnoInterface {
     email: string;
 }
 
-export function crearAlumnoInterface(
+export function crearAlumnoInterface( 
     legajo: number,
     nombre: string,
     apellido: string,
     edad: number,
     email: string
 ): AlumnoInterface {
-    // TODO
-    throw new Error("Implementar");
+    return {legajo, nombre, apellido, edad, email};
 }
 
 // -----------------------------------------------------------------------------
 // Versión con `type`
 // -----------------------------------------------------------------------------
-export type AlumnoType = {
+export type AlumnoType = {  // Definición de la estructura de un Alumno usando type
     legajo: number;
     nombre: string;
     apellido: string;
@@ -52,6 +51,5 @@ export function crearAlumnoType(
     edad: number,
     email: string
 ): AlumnoType {
-    // TODO
-    throw new Error("Implementar");
+    return {legajo, nombre, apellido, edad, email};
 }
