@@ -2,7 +2,7 @@
  * EJERCICIO 13 - Clase abstracta Empleado
  * ---------------------------------------------------------------------------
  * Cada tipo de empleado calcula su sueldo de una forma distinta, pero todos
- * comparten nombre/apellido/legajo y el contrato calcularSueldo().
+ * comparten nombre/apellido/legajoo y el contrato calcularSueldo().
  */
 export abstract class Empleado {
     constructor(
